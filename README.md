@@ -114,38 +114,52 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 | Melihat Riwayat Pemesanan      | Menampilkan semua reservasi milik sendiri.                               |
 | Membatalkan Reservasi (Opsional) | Dapat membatalkan pesanan jika belum diverifikasi.                     |
 
-## 📋 Struktur Tabel Migration Laravel
+
 
 ### 🧑‍💼 **Tabel Users** (Admin, Petugas, dan User)
 
-```php
-Schema::create('users', function (Blueprint $table) {
-    $table->id();
-    $table->string('name');
-    $table->string('email')->unique();  // Email harus unik
-    $table->string('password');  // Password tidak perlu unique
-    $table->enum('role', ['admin', 'petugas', 'user'])->default('user');  // Role yang berbeda
-    $table->timestamps();
-});
+| Name Field    | Tipe Data      | Keterangan                               |
+|---------------|----------------|------------------------------------------|
+| `id`          | `bigIncrements`| ID pengguna                              |
+| `name`        | `string`       | Nama pengguna                            |
+| `email`       | `string`       | Email pengguna (unik)                    |
+| `password`    | `string`       | Password pengguna (tidak perlu unik)     |
+| `role`        | `enum`         | Role pengguna (`admin`, `petugas`, `user`)|
+| `timestamps`  | `timestamps`   | Waktu dibuat dan diperbarui              |
 
-Schema::create('fields', function (Blueprint $table) {
-    $table->id();
-    $table->string('name');  // Nama lapangan
-    $table->text('description')->nullable();  // Deskripsi lapangan
-    $table->decimal('price_per_hour', 10, 2);  // Harga per jam
-    $table->string('location')->nullable();  // Lokasi lapangan
-    $table->boolean('is_active')->default(true);  // Status aktif/non-aktif
-    $table->timestamps();
-});
+---
 
-Schema::create('reservations', function (Blueprint $table) {
-    $table->id();
-    $table->foreignId('user_id')->constrained()->onDelete('cascade');  // User yang memesan
-    $table->foreignId('field_id')->constrained('fields')->onDelete('cascade');  // Lapangan yang dipesan
-    $table->date('booking_date');  // Tanggal pemesanan
-    $table->time('start_time');  // Waktu mulai
-    $table->time('end_time');  // Waktu selesai
-    $table->enum('status', ['menunggu', 'diterima', 'selesai', 'ditolak'])->default('menunggu');  // Status pemesanan
-    $table->timestamps();
-});
+### 🏟️ **Tabel Fields** (Lapangan)
+
+| Name Field        | Tipe Data      | Keterangan                                           |
+|-------------------|----------------|------------------------------------------------------|
+| `id`              | `bigIncrements`| ID lapangan                                          |
+| `name`            | `string`       | Nama lapangan                                        |
+| `description`     | `text`         | Deskripsi lapangan (opsional)                        |
+| `price_per_hour`  | `decimal`      | Harga per jam penggunaan lapangan                    |
+| `location`        | `string`       | Lokasi lapangan (opsional)                           |
+| `is_active`       | `boolean`      | Status aktif/non-aktif lapangan                      |
+| `timestamps`      | `timestamps`   | Waktu dibuat dan diperbarui                           |
+
+---
+
+### 📅 **Tabel Reservations** (Pemesanan)
+
+| Name Field       | Tipe Data      | Keterangan                                                   |
+|------------------|----------------|--------------------------------------------------------------|
+| `id`             | `bigIncrements`| ID pemesanan                                                 |
+| `user_id`        | `foreignId`    | ID pengguna yang melakukan pemesanan (relasi ke tabel `users`)|
+| `field_id`       | `foreignId`    | ID lapangan yang dipesan (relasi ke tabel `fields`)          |
+| `booking_date`   | `date`         | Tanggal pemesanan                                            |
+| `start_time`     | `time`         | Waktu mulai pemesanan                                         |
+| `end_time`       | `time`         | Waktu selesai pemesanan                                       |
+| `status`         | `enum`         | Status pemesanan (`menunggu`, `diterima`, `selesai`, `ditolak`)|
+| `timestamps`     | `timestamps`   | Waktu dibuat dan diperbarui                                   |
+
+---
+
+### ⚠️ **Catatan:**
+- **Tabel `users`** digunakan untuk semua role (`admin`, `petugas`, `user`), dan role dapat dibedakan berdasarkan kolom `role`.
+- **Tabel `fields`** berisi data lapangan, seperti nama, deskripsi, harga per jam, dan lokasi lapangan.
+- **Tabel `reservations`** menyimpan data pemesanan lapangan oleh user, termasuk tanggal, jam, dan status pemesanan.
 
