@@ -74,3 +74,5 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 </p>
 
 <h3>Role dan Fitur</h3>
+
+<h3>🧑‍💼 1. Admin</h3>
