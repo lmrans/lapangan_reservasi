@@ -127,7 +127,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 | `role`        | `enum`         | Role pengguna (`admin`, `petugas`, `user`)|
 | `timestamps`  | `timestamps`   | Waktu dibuat dan diperbarui              |
 
----
+
 
 ### 🏟️ **Tabel Fields** (Lapangan)
 
@@ -141,7 +141,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 | `is_active`       | `boolean`      | Status aktif/non-aktif lapangan                      |
 | `timestamps`      | `timestamps`   | Waktu dibuat dan diperbarui                           |
 
----
+
 
 ### 📅 **Tabel Reservations** (Pemesanan)
 
@@ -156,4 +156,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 | `status`         | `enum`         | Status pemesanan (`menunggu`, `diterima`, `selesai`, `ditolak`)|
 | `timestamps`     | `timestamps`   | Waktu dibuat dan diperbarui                                   |
 
---
+
