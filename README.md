@@ -108,3 +108,57 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 | Melakukan reservasi lapangan        | User dapat memilih lapangan, tanggal dan waktu untuk melakukan pemesanan.                  |
 | Mengunggah bukti pembayaran         | Setelah reservasi, user akan mengunggah bukti transfer pembayaran sesuai tagihan.          |
 | Melihat status reservasi & pembayaran | User dapat melihat status pemesanan dan apakah pembayaran sudah diverifikasi atau belum.  |
+
+## 🗂️ Struktur Tabel Database
+
+### 1. Tabel: users
+
+| Tipe Data     | Nama Field     | Keterangan                                     |
+|---------------|----------------|------------------------------------------------|
+| bigint (PK)   | id             | Primary key, auto increment                    |
+| string        | name           | Nama lengkap pengguna                          |
+| string        | email          | Email pengguna (unik)                          |
+| string        | password       | Password yang sudah di-hash                    |
+| enum          | role           | Peran user: admin, petugas, user               |
+| timestamps    | created_at, updated_at | Otomatis dibuat oleh Laravel          |
+
+---
+
+### 2. Tabel: lapangan
+
+| Tipe Data     | Nama Field     | Keterangan                                     |
+|---------------|----------------|------------------------------------------------|
+| bigint (PK)   | id             | Primary key                                    |
+| string        | nama_lapangan  | Nama lapangan                                  |
+| string        | jenis          | Jenis lapangan (futsal, basket, dll)           |
+| text          | deskripsi      | Deskripsi singkat tentang lapangan             |
+| integer       | harga_per_jam  | Harga sewa per jam                             |
+| timestamps    | created_at, updated_at | Otomatis dibuat oleh Laravel          |
+
+---
+
+### 3. Tabel: reservasi
+
+| Tipe Data     | Nama Field     | Keterangan                                     |
+|---------------|----------------|------------------------------------------------|
+| bigint (PK)   | id             | Primary key                                    |
+| foreignId     | user_id        | Relasi ke tabel `users`                        |
+| foreignId     | lapangan_id    | Relasi ke tabel `lapangan`                    |
+| date          | tanggal        | Tanggal reservasi                              |
+| time          | jam_mulai      | Waktu mulai pemakaian                          |
+| time          | jam_selesai    | Waktu selesai pemakaian                        |
+| enum          | status         | Status: pending, disetujui, ditolak            |
+| timestamps    | created_at, updated_at | Otomatis dibuat oleh Laravel          |
+
+---
+
+### 4. Tabel: pembayaran
+
+| Tipe Data     | Nama Field     | Keterangan                                     |
+|---------------|----------------|------------------------------------------------|
+| bigint (PK)   | id             | Primary key                                    |
+| foreignId     | reservasi_id   | Relasi ke tabel `reservasi` (one-to-one)       |
+| integer       | total_bayar    | Jumlah yang dibayarkan                         |
+| string        | bukti_transfer | Path/file bukti pembayaran                     |
+| enum          | status         | Status: menunggu, lunas, gagal                 |
+| timestamps    | created_at, updated_at | Otomatis dibuat oleh Laravel          |
