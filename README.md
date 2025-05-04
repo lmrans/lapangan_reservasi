@@ -75,4 +75,26 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 <h3>Role dan Fitur</h3>
 
-<h3>🧑‍💼 1. Admin</h3>
+## 📋 Role dan Fitur Sistem
+
+| Role     | Fitur                                                         | Deskripsi                                                                 |
+|----------|---------------------------------------------------------------|---------------------------------------------------------------------------|
+| **Admin**   | Login Dashboard                                              | Mengakses halaman utama admin.                                            |
+|            | Kelola Data Lapangan (CRUD)                                 | Menambahkan, mengedit, menghapus, dan melihat data lapangan.             |
+|            | Kelola User & Petugas                                       | Mengelola akun pengguna dan petugas.                                      |
+|            | Melihat Semua Reservasi                                     | Melihat semua pemesanan dari seluruh pengguna.                           |
+|            | Hapus / Batalkan Reservasi                                  | Menghapus reservasi yang tidak valid.                                     |
+|            | Laporan Pemesanan (Opsional)                                | Menampilkan statistik penggunaan lapangan dan laporan pemesanan.         |
+| **Petugas** | Login Dashboard Petugas                                     | Mengakses halaman khusus untuk petugas.                                   |
+|            | Melihat Daftar Reservasi                                    | Menampilkan semua reservasi dari user.                                    |
+|            | Melihat Detail User                                         | Melihat informasi user yang melakukan reservasi.                          |
+|            | Ubah Status Reservasi                                       | Mengubah status: Menunggu → Diterima → Selesai atau Ditolak.             |
+|            | Melihat Jadwal Lapangan                                     | Menampilkan jadwal lapangan berdasarkan booking.                          |
+|            | Verifikasi Pembayaran COD                                   | Mencatat pembayaran yang dilakukan di tempat.                             |
+| **User**    | Registrasi & Login                                          | Membuat akun dan masuk ke sistem.                                         |
+|            | Melihat Daftar Lapangan                                     | Menampilkan semua lapangan yang tersedia.                                 |
+|            | Melakukan Pemesanan                                         | Memilih lapangan, tanggal, jam, dan metode pembayaran.                   |
+|            | Melihat Status Reservasi                                    | Melihat status: Menunggu, Diterima, Selesai, atau Ditolak.                |
+|            | Melihat Riwayat Pemesanan                                   | Menampilkan histori pemesanan pribadi.                                    |
+|            | Membatalkan Reservasi (Opsional)                            | Membatalkan reservasi sebelum diverifikasi oleh petugas.                 |
+
