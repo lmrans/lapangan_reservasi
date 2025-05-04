@@ -109,7 +109,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 | Mengunggah bukti pembayaran         | Setelah reservasi, user akan mengunggah bukti transfer pembayaran sesuai tagihan.          |
 | Melihat status reservasi & pembayaran | User dapat melihat status pemesanan dan apakah pembayaran sudah diverifikasi atau belum.  |
 
-## 🗂️ Struktur Tabel Database
+## Tabel-tabel database beserta field dan tipe datanya
 
 ### 1. Tabel: users
 
@@ -166,3 +166,31 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 | status         | enum          | Status: menunggu, lunas, gagal                  |
 | created_at     | timestamp     | Tanggal dibuat otomatis oleh Laravel            |
 | updated_at     | timestamp     | Tanggal update terakhir otomatis oleh Laravel   |
+
+## Relasi Antar Tabel
+
+| Tabel Sumber       | Tabel Tujuan        | Jenis Relasi      | Keterangan                                         |
+|--------------------|---------------------|-------------------|---------------------------------------------------|
+| `users`            | `reservations`       | One-to-Many       | Setiap user dapat membuat banyak reservasi        |
+| `lapangan`         | `reservations`       | One-to-Many       | Setiap lapangan dapat memiliki banyak reservasi   |
+| `reservations`     | `payments`           | One-to-One        | Setiap reservasi memiliki satu pembayaran terkait |
+
+## Jenis relasi dan tabel yang berelasi
+
+1. **Tabel `users`**:
+   - Berelasi dengan **tabel `reservations`** melalui `user_id`.
+   - Relasi: **One-to-Many** (Satu user dapat memiliki banyak reservasi).
+
+2. **Tabel `lapangan`**:
+   - Berelasi dengan **tabel `reservations`** melalui `lapangan_id`.
+   - Relasi: **One-to-Many** (Satu lapangan dapat memiliki banyak reservasi).
+
+3. **Tabel `reservations`**:
+   - Berelasi dengan **tabel `users`** melalui `user_id`.
+   - Berelasi dengan **tabel `lapangan`** melalui `lapangan_id`.
+   - Berelasi dengan **tabel `payments`** melalui `reservation_id`.
+   - Relasi: **Many-to-One** ke `users` dan `lapangan`, **One-to-One** ke `payments`.
+
+4. **Tabel `payments`**:
+   - Berelasi dengan **tabel `reservations`** melalui `reservation_id`.
+   - Relasi: **One-to-One** (Setiap pembayaran berhubungan dengan satu reservasi).
