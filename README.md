@@ -75,93 +75,27 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 <h3>Role dan Fitur</h3>
 
-## 🧑‍💼 Admin
+# 🎾 Portal Reservasi Lapangan Olahraga
 
-**Fungsi Utama:** Mengelola seluruh sistem, data pengguna, lapangan, dan pemesanan.
+Sistem ini mendukung 3 role utama dengan fitur-fitur yang disesuaikan untuk masing-masing peran pengguna. Sistem juga sudah mendukung reservasi dan pembayaran secara terintegrasi.
 
-| Fitur                           | Deskripsi                                                                 |
-|---------------------------------|---------------------------------------------------------------------------|
-| Login Dashboard Admin           | Mengakses halaman utama admin.                                            |
-| Kelola Data Lapangan (CRUD)     | Tambah, ubah, hapus, dan lihat data lapangan.                            |
-| Kelola User & Petugas           | Tambah, edit, atau hapus akun pengguna dan petugas.                       |
-| Melihat Semua Reservasi         | Melihat seluruh reservasi dari semua user.                               |
-| Hapus / Batalkan Reservasi      | Menghapus atau membatalkan pemesanan yang tidak valid.                   |
-| Laporan Pemesanan (Opsional)    | Menampilkan statistik penggunaan dan pemesanan lapangan.                |
+## 📌 Role dan Fitur
 
-## 🧑‍🔧 Petugas
+| Role    | Deskripsi Peran                                                                 | Fitur Utama                                                                                     |
+|---------|----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| Admin   | Pengelola sistem secara keseluruhan                                             | - Mengelola data lapangan (CRUD) <br> - Melihat semua reservasi <br> - Kelola user & petugas <br> - Melihat semua data pembayaran |
+| Petugas | Verifikator yang bertanggung jawab atas reservasi dan pembayaran dari user     | - Melihat semua reservasi <br> - Menyetujui/menolak reservasi <br> - Verifikasi bukti pembayaran <br> - Ubah status pembayaran |
+| User    | Pemesan lapangan yang melakukan reservasi dan pembayaran                       | - Registrasi & login <br> - Melihat lapangan <br> - Reservasi lapangan <br> - Upload bukti pembayaran <br> - Lihat status reservasi & pembayaran |
 
-**Fungsi Utama:** Memverifikasi reservasi dan mengelola status pemesanan.
+---
 
-| Fitur                          | Deskripsi                                                                  |
-|--------------------------------|----------------------------------------------------------------------------|
-| Login Dashboard Petugas        | Masuk ke sistem dengan role petugas.                                       |
-| Melihat Daftar Reservasi       | Menampilkan semua reservasi yang masuk.                                   |
-| Melihat Detail User            | Melihat informasi user yang melakukan reservasi.                          |
-| Ubah Status Reservasi          | Mengubah status: Menunggu → Diterima → Selesai, atau ditolak.            |
-| Melihat Jadwal Lapangan        | Menampilkan jadwal penggunaan lapangan.                                   |
-| Verifikasi Pembayaran COD      | Mencatat dan memverifikasi pembayaran langsung di lokasi.                |
+## 🧱 Tabel & Relasi
 
-## 🧑 User
+| Tabel        | Deskripsi                                        | Relasi                                                                 |
+|--------------|--------------------------------------------------|------------------------------------------------------------------------|
+| `users`      | Menyimpan data user (admin, petugas, user)       | `users.id` → `reservasi.user_id`                                      |
+| `lapangan`   | Menyimpan data lapangan                          | `lapangan.id` → `reservasi.lapangan_id`                               |
+| `reservasi`  | Data pemesanan oleh user                         | `reservasi.id` → `pembayaran.reservasi_id`                            |
+| `pembayaran` | Data pembayaran untuk tiap reservasi             | Terkait satu-satu (one-to-one) dengan `reservasi`                      |
 
-**Fungsi Utama:** Melakukan pemesanan lapangan dan memantau statusnya.
-
-| Fitur                          | Deskripsi                                                                 |
-|--------------------------------|---------------------------------------------------------------------------|
-| Registrasi & Login             | Membuat akun dan masuk ke sistem.                                         |
-| Melihat Daftar Lapangan        | Menampilkan informasi lapangan yang tersedia.                            |
-| Melakukan Pemesanan            | Pilih lapangan, tanggal & jam, serta metode pembayaran (COD/Transfer).   |
-| Melihat Status Reservasi       | Melihat apakah pesanan diterima, ditolak, selesai, atau menunggu.        |
-| Melihat Riwayat Pemesanan      | Menampilkan semua reservasi milik sendiri.                               |
-| Membatalkan Reservasi (Opsional) | Dapat membatalkan pesanan jika belum diverifikasi.                     |
-
-<h3>Tabel-tabel database beserta field dan tipe datanya</h3>
-
-### 🧑‍💼 **Tabel Users** (Admin, Petugas, dan User)
-
-| Name Field    | Tipe Data      | Keterangan                               |
-|---------------|----------------|------------------------------------------|
-| `id`          | `bigIncrements`| ID pengguna                              |
-| `name`        | `string`       | Nama pengguna                            |
-| `email`       | `string`       | Email pengguna (unik)                    |
-| `password`    | `string`       | Password pengguna (tidak perlu unik)     |
-| `role`        | `enum`         | Role pengguna (`admin`, `petugas`, `user`)|
-| `timestamps`  | `timestamps`   | Waktu dibuat dan diperbarui              |
-
-
-
-### 🏟️ **Tabel Fields** (Lapangan)
-
-| Name Field        | Tipe Data      | Keterangan                                           |
-|-------------------|----------------|------------------------------------------------------|
-| `id`              | `bigIncrements`| ID lapangan                                          |
-| `name`            | `string`       | Nama lapangan                                        |
-| `description`     | `text`         | Deskripsi lapangan (opsional)                        |
-| `price_per_hour`  | `decimal`      | Harga per jam penggunaan lapangan                    |
-| `location`        | `string`       | Lokasi lapangan (opsional)                           |
-| `is_active`       | `boolean`      | Status aktif/non-aktif lapangan                      |
-| `timestamps`      | `timestamps`   | Waktu dibuat dan diperbarui                           |
-
-
-
-### 📅 **Tabel Reservations** (Pemesanan)
-
-| Name Field       | Tipe Data      | Keterangan                                                   |
-|------------------|----------------|--------------------------------------------------------------|
-| `id`             | `bigIncrements`| ID pemesanan                                                 |
-| `user_id`        | `foreignId`    | ID pengguna yang melakukan pemesanan (relasi ke tabel `users`)|
-| `field_id`       | `foreignId`    | ID lapangan yang dipesan (relasi ke tabel `fields`)          |
-| `booking_date`   | `date`         | Tanggal pemesanan                                            |
-| `start_time`     | `time`         | Waktu mulai pemesanan                                         |
-| `end_time`       | `time`         | Waktu selesai pemesanan                                       |
-| `status`         | `enum`         | Status pemesanan (`menunggu`, `diterima`, `selesai`, `ditolak`)|
-| `timestamps`     | `timestamps`   | Waktu dibuat dan diperbarui                                   |
-
-
-## 🔗 Relasi Antar Tabel
-
-| Tabel Asal      | Tabel Tujuan   | Jenis Relasi       | Keterangan                                                  |
-|------------------|----------------|---------------------|--------------------------------------------------------------|
-| `users`          | `reservations` | One to Many (1:N)   | Satu user bisa memiliki banyak reservasi                     |
-| `fields`         | `reservations` | One to Many (1:N)   | Satu lapangan bisa dipesan dalam banyak reservasi            |
-| `users` ↔ `fields` | via `reservations` | Many to Many (M:N) | Banyak user bisa memesan banyak lapangan (pivot: reservations) |
-
+---
