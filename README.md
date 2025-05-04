@@ -75,27 +75,36 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 <h3>Role dan Fitur</h3>
 
-# 🎾 Portal Reservasi Lapangan Olahraga
+## 📌 Rincian Fitur Berdasarkan Role
 
-Sistem ini mendukung 3 role utama dengan fitur-fitur yang disesuaikan untuk masing-masing peran pengguna. Sistem juga sudah mendukung reservasi dan pembayaran secara terintegrasi.
+### 🧑‍💼 Admin – Pengelola Sistem
 
-## 📌 Role dan Fitur
+| Fitur                                | Deskripsi                                                                                   |
+|--------------------------------------|---------------------------------------------------------------------------------------------|
+| Mengelola data lapangan (CRUD)      | Admin dapat membuat, melihat, mengubah, dan menghapus data lapangan olahraga.              |
+| Melihat semua reservasi             | Admin dapat melihat seluruh reservasi yang masuk beserta statusnya.                        |
+| Mengelola akun user & petugas       | Admin dapat mengelola akun semua pengguna termasuk petugas dan user (edit, hapus, reset).  |
+| Melihat data pembayaran             | Admin dapat mengakses seluruh riwayat pembayaran yang dilakukan oleh user.                 |
 
-| Role    | Deskripsi Peran                                                                 | Fitur Utama                                                                                     |
-|---------|----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
-| Admin   | Pengelola sistem secara keseluruhan                                             | - Mengelola data lapangan (CRUD) <br> - Melihat semua reservasi <br> - Kelola user & petugas <br> - Melihat semua data pembayaran |
-| Petugas | Verifikator yang bertanggung jawab atas reservasi dan pembayaran dari user     | - Melihat semua reservasi <br> - Menyetujui/menolak reservasi <br> - Verifikasi bukti pembayaran <br> - Ubah status pembayaran |
-| User    | Pemesan lapangan yang melakukan reservasi dan pembayaran                       | - Registrasi & login <br> - Melihat lapangan <br> - Reservasi lapangan <br> - Upload bukti pembayaran <br> - Lihat status reservasi & pembayaran |
+---
+
+### 🧑‍🔧 Petugas – Verifikator
+
+| Fitur                                | Deskripsi                                                                                   |
+|--------------------------------------|---------------------------------------------------------------------------------------------|
+| Melihat semua reservasi             | Petugas dapat memantau seluruh reservasi yang dilakukan oleh user.                         |
+| Menyetujui/menolak reservasi        | Petugas dapat mengubah status reservasi sesuai kondisi setelah verifikasi pembayaran.      |
+| Melihat data pembayaran             | Petugas dapat melihat pembayaran yang dilakukan user beserta bukti transfer.               |
+| Verifikasi & ubah status pembayaran | Petugas mengecek dan memverifikasi bukti pembayaran lalu mengubah status menjadi lunas/gagal.|
 
 ---
 
-## 🧱 Tabel & Relasi
+### 🧑 User – Pemesan Lapangan
 
-| Tabel        | Deskripsi                                        | Relasi                                                                 |
-|--------------|--------------------------------------------------|------------------------------------------------------------------------|
-| `users`      | Menyimpan data user (admin, petugas, user)       | `users.id` → `reservasi.user_id`                                      |
-| `lapangan`   | Menyimpan data lapangan                          | `lapangan.id` → `reservasi.lapangan_id`                               |
-| `reservasi`  | Data pemesanan oleh user                         | `reservasi.id` → `pembayaran.reservasi_id`                            |
-| `pembayaran` | Data pembayaran untuk tiap reservasi             | Terkait satu-satu (one-to-one) dengan `reservasi`                      |
-
----
+| Fitur                                | Deskripsi                                                                                   |
+|--------------------------------------|---------------------------------------------------------------------------------------------|
+| Registrasi & login                  | User dapat mendaftar dan masuk ke sistem menggunakan email dan password.                   |
+| Melihat daftar lapangan             | User bisa melihat semua lapangan yang tersedia untuk disewa beserta detailnya.             |
+| Melakukan reservasi lapangan        | User dapat memilih lapangan, tanggal dan waktu untuk melakukan pemesanan.                  |
+| Mengunggah bukti pembayaran         | Setelah reservasi, user akan mengunggah bukti transfer pembayaran sesuai tagihan.          |
+| Melihat status reservasi & pembayaran | User dapat melihat status pemesanan dan apakah pembayaran sudah diverifikasi atau belum.  |
