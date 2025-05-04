@@ -75,26 +75,42 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 <h3>Role dan Fitur</h3>
 
-## 📋 Role dan Fitur Sistem
+## 🧑‍💼 Admin
 
-| Role     | Fitur                                                         | Deskripsi                                                                 |
-|----------|---------------------------------------------------------------|---------------------------------------------------------------------------|
-| **Admin**   | Login Dashboard                                              | Mengakses halaman utama admin.                                            |
-|            | Kelola Data Lapangan (CRUD)                                 | Menambahkan, mengedit, menghapus, dan melihat data lapangan.             |
-|            | Kelola User & Petugas                                       | Mengelola akun pengguna dan petugas.                                      |
-|            | Melihat Semua Reservasi                                     | Melihat semua pemesanan dari seluruh pengguna.                           |
-|            | Hapus / Batalkan Reservasi                                  | Menghapus reservasi yang tidak valid.                                     |
-|            | Laporan Pemesanan (Opsional)                                | Menampilkan statistik penggunaan lapangan dan laporan pemesanan.         |
-| **Petugas** | Login Dashboard Petugas                                     | Mengakses halaman khusus untuk petugas.                                   |
-|            | Melihat Daftar Reservasi                                    | Menampilkan semua reservasi dari user.                                    |
-|            | Melihat Detail User                                         | Melihat informasi user yang melakukan reservasi.                          |
-|            | Ubah Status Reservasi                                       | Mengubah status: Menunggu → Diterima → Selesai atau Ditolak.             |
-|            | Melihat Jadwal Lapangan                                     | Menampilkan jadwal lapangan berdasarkan booking.                          |
-|            | Verifikasi Pembayaran COD                                   | Mencatat pembayaran yang dilakukan di tempat.                             |
-| **User**    | Registrasi & Login                                          | Membuat akun dan masuk ke sistem.                                         |
-|            | Melihat Daftar Lapangan                                     | Menampilkan semua lapangan yang tersedia.                                 |
-|            | Melakukan Pemesanan                                         | Memilih lapangan, tanggal, jam, dan metode pembayaran.                   |
-|            | Melihat Status Reservasi                                    | Melihat status: Menunggu, Diterima, Selesai, atau Ditolak.                |
-|            | Melihat Riwayat Pemesanan                                   | Menampilkan histori pemesanan pribadi.                                    |
-|            | Membatalkan Reservasi (Opsional)                            | Membatalkan reservasi sebelum diverifikasi oleh petugas.                 |
+**Fungsi Utama:** Mengelola seluruh sistem, data pengguna, lapangan, dan pemesanan.
+
+| Fitur                           | Deskripsi                                                                 |
+|---------------------------------|---------------------------------------------------------------------------|
+| Login Dashboard Admin           | Mengakses halaman utama admin.                                            |
+| Kelola Data Lapangan (CRUD)     | Tambah, ubah, hapus, dan lihat data lapangan.                            |
+| Kelola User & Petugas           | Tambah, edit, atau hapus akun pengguna dan petugas.                       |
+| Melihat Semua Reservasi         | Melihat seluruh reservasi dari semua user.                               |
+| Hapus / Batalkan Reservasi      | Menghapus atau membatalkan pemesanan yang tidak valid.                   |
+| Laporan Pemesanan (Opsional)    | Menampilkan statistik penggunaan dan pemesanan lapangan.                |
+
+## 🧑‍🔧 Petugas
+
+**Fungsi Utama:** Memverifikasi reservasi dan mengelola status pemesanan.
+
+| Fitur                          | Deskripsi                                                                  |
+|--------------------------------|----------------------------------------------------------------------------|
+| Login Dashboard Petugas        | Masuk ke sistem dengan role petugas.                                       |
+| Melihat Daftar Reservasi       | Menampilkan semua reservasi yang masuk.                                   |
+| Melihat Detail User            | Melihat informasi user yang melakukan reservasi.                          |
+| Ubah Status Reservasi          | Mengubah status: Menunggu → Diterima → Selesai, atau ditolak.            |
+| Melihat Jadwal Lapangan        | Menampilkan jadwal penggunaan lapangan.                                   |
+| Verifikasi Pembayaran COD      | Mencatat dan memverifikasi pembayaran langsung di lokasi.                |
+
+## 🧑 User
+
+**Fungsi Utama:** Melakukan pemesanan lapangan dan memantau statusnya.
+
+| Fitur                          | Deskripsi                                                                 |
+|--------------------------------|---------------------------------------------------------------------------|
+| Registrasi & Login             | Membuat akun dan masuk ke sistem.                                         |
+| Melihat Daftar Lapangan        | Menampilkan informasi lapangan yang tersedia.                            |
+| Melakukan Pemesanan            | Pilih lapangan, tanggal & jam, serta metode pembayaran (COD/Transfer).   |
+| Melihat Status Reservasi       | Melihat apakah pesanan diterima, ditolak, selesai, atau menunggu.        |
+| Melihat Riwayat Pemesanan      | Menampilkan semua reservasi milik sendiri.                               |
+| Membatalkan Reservasi (Opsional) | Dapat membatalkan pesanan jika belum diverifikasi.                     |
 
