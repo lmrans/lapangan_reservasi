@@ -156,10 +156,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 | `status`         | `enum`         | Status pemesanan (`menunggu`, `diterima`, `selesai`, `ditolak`)|
 | `timestamps`     | `timestamps`   | Waktu dibuat dan diperbarui                                   |
 
----
-
-### ⚠️ **Catatan:**
-- **Tabel `users`** digunakan untuk semua role (`admin`, `petugas`, `user`), dan role dapat dibedakan berdasarkan kolom `role`.
-- **Tabel `fields`** berisi data lapangan, seperti nama, deskripsi, harga per jam, dan lokasi lapangan.
-- **Tabel `reservations`** menyimpan data pemesanan lapangan oleh user, termasuk tanggal, jam, dan status pemesanan.
-
+--
