@@ -157,3 +157,11 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 | `timestamps`     | `timestamps`   | Waktu dibuat dan diperbarui                                   |
 
 
+## 🔗 Relasi Antar Tabel
+
+| Tabel Asal      | Tabel Tujuan   | Jenis Relasi       | Keterangan                                                  |
+|------------------|----------------|---------------------|--------------------------------------------------------------|
+| `users`          | `reservations` | One to Many (1:N)   | Satu user bisa memiliki banyak reservasi                     |
+| `fields`         | `reservations` | One to Many (1:N)   | Satu lapangan bisa dipesan dalam banyak reservasi            |
+| `users` ↔ `fields` | via `reservations` | Many to Many (M:N) | Banyak user bisa memesan banyak lapangan (pivot: reservations) |
+
