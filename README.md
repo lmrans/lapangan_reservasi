@@ -114,3 +114,38 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 | Melihat Riwayat Pemesanan      | Menampilkan semua reservasi milik sendiri.                               |
 | Membatalkan Reservasi (Opsional) | Dapat membatalkan pesanan jika belum diverifikasi.                     |
 
+## 📋 Struktur Tabel Migration Laravel
+
+### 🧑‍💼 **Tabel Users** (Admin, Petugas, dan User)
+
+```php
+Schema::create('users', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->string('email')->unique();  // Email harus unik
+    $table->string('password');  // Password tidak perlu unique
+    $table->enum('role', ['admin', 'petugas', 'user'])->default('user');  // Role yang berbeda
+    $table->timestamps();
+});
+
+Schema::create('fields', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');  // Nama lapangan
+    $table->text('description')->nullable();  // Deskripsi lapangan
+    $table->decimal('price_per_hour', 10, 2);  // Harga per jam
+    $table->string('location')->nullable();  // Lokasi lapangan
+    $table->boolean('is_active')->default(true);  // Status aktif/non-aktif
+    $table->timestamps();
+});
+
+Schema::create('reservations', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('user_id')->constrained()->onDelete('cascade');  // User yang memesan
+    $table->foreignId('field_id')->constrained('fields')->onDelete('cascade');  // Lapangan yang dipesan
+    $table->date('booking_date');  // Tanggal pemesanan
+    $table->time('start_time');  // Waktu mulai
+    $table->time('end_time');  // Waktu selesai
+    $table->enum('status', ['menunggu', 'diterima', 'selesai', 'ditolak'])->default('menunggu');  // Status pemesanan
+    $table->timestamps();
+});
+
