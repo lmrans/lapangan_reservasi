@@ -113,52 +113,56 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ### 1. Tabel: users
 
-| Tipe Data     | Nama Field     | Keterangan                                     |
-|---------------|----------------|------------------------------------------------|
-| bigint (PK)   | id             | Primary key, auto increment                    |
-| string        | name           | Nama lengkap pengguna                          |
-| string        | email          | Email pengguna (unik)                          |
-| string        | password       | Password yang sudah di-hash                    |
-| enum          | role           | Peran user: admin, petugas, user               |
-| timestamps    | created_at, updated_at | Otomatis dibuat oleh Laravel          |
+| Nama Field   | Tipe Data     | Keterangan                                      |
+|--------------|----------------|-------------------------------------------------|
+| id           | bigint (PK)    | Primary key, auto increment                     |
+| name         | string          | Nama lengkap pengguna                           |
+| email        | string          | Email pengguna (unik)                           |
+| password     | string          | Password yang sudah di-hash                     |
+| role         | enum            | Peran user: admin, petugas, user                |
+| created_at   | timestamp       | Tanggal dibuat otomatis oleh Laravel            |
+| updated_at   | timestamp       | Tanggal update terakhir otomatis oleh Laravel   |
 
 ---
 
 ### 2. Tabel: lapangan
 
-| Tipe Data     | Nama Field     | Keterangan                                     |
-|---------------|----------------|------------------------------------------------|
-| bigint (PK)   | id             | Primary key                                    |
-| string        | nama_lapangan  | Nama lapangan                                  |
-| string        | jenis          | Jenis lapangan (futsal, basket, dll)           |
-| text          | deskripsi      | Deskripsi singkat tentang lapangan             |
-| integer       | harga_per_jam  | Harga sewa per jam                             |
-| timestamps    | created_at, updated_at | Otomatis dibuat oleh Laravel          |
+| Nama Field     | Tipe Data     | Keterangan                                      |
+|----------------|---------------|-------------------------------------------------|
+| id             | bigint (PK)   | Primary key                                     |
+| nama_lapangan  | string        | Nama lapangan                                   |
+| jenis          | string        | Jenis lapangan (futsal, basket, dll)            |
+| deskripsi      | text          | Deskripsi tentang lapangan                      |
+| harga_per_jam  | integer       | Biaya sewa per jam                              |
+| created_at     | timestamp     | Tanggal dibuat otomatis oleh Laravel            |
+| updated_at     | timestamp     | Tanggal update terakhir otomatis oleh Laravel   |
 
 ---
 
 ### 3. Tabel: reservasi
 
-| Tipe Data     | Nama Field     | Keterangan                                     |
-|---------------|----------------|------------------------------------------------|
-| bigint (PK)   | id             | Primary key                                    |
-| foreignId     | user_id        | Relasi ke tabel `users`                        |
-| foreignId     | lapangan_id    | Relasi ke tabel `lapangan`                    |
-| date          | tanggal        | Tanggal reservasi                              |
-| time          | jam_mulai      | Waktu mulai pemakaian                          |
-| time          | jam_selesai    | Waktu selesai pemakaian                        |
-| enum          | status         | Status: pending, disetujui, ditolak            |
-| timestamps    | created_at, updated_at | Otomatis dibuat oleh Laravel          |
+| Nama Field     | Tipe Data     | Keterangan                                      |
+|----------------|---------------|-------------------------------------------------|
+| id             | bigint (PK)   | Primary key                                     |
+| user_id        | foreignId     | Relasi ke tabel `users`                         |
+| lapangan_id    | foreignId     | Relasi ke tabel `lapangan`                      |
+| tanggal        | date          | Tanggal reservasi                               |
+| jam_mulai      | time          | Waktu mulai pemakaian                           |
+| jam_selesai    | time          | Waktu selesai pemakaian                         |
+| status         | enum          | Status: pending, disetujui, ditolak             |
+| created_at     | timestamp     | Tanggal dibuat otomatis oleh Laravel            |
+| updated_at     | timestamp     | Tanggal update terakhir otomatis oleh Laravel   |
 
 ---
 
 ### 4. Tabel: pembayaran
 
-| Tipe Data     | Nama Field     | Keterangan                                     |
-|---------------|----------------|------------------------------------------------|
-| bigint (PK)   | id             | Primary key                                    |
-| foreignId     | reservasi_id   | Relasi ke tabel `reservasi` (one-to-one)       |
-| integer       | total_bayar    | Jumlah yang dibayarkan                         |
-| string        | bukti_transfer | Path/file bukti pembayaran                     |
-| enum          | status         | Status: menunggu, lunas, gagal                 |
-| timestamps    | created_at, updated_at | Otomatis dibuat oleh Laravel          |
+| Nama Field     | Tipe Data     | Keterangan                                      |
+|----------------|---------------|-------------------------------------------------|
+| id             | bigint (PK)   | Primary key                                     |
+| reservasi_id   | foreignId     | Relasi ke tabel `reservasi` (one-to-one)       |
+| total_bayar    | integer       | Jumlah uang yang dibayarkan                     |
+| bukti_transfer | string        | Path atau nama file bukti transfer              |
+| status         | enum          | Status: menunggu, lunas, gagal                  |
+| created_at     | timestamp     | Tanggal dibuat otomatis oleh Laravel            |
+| updated_at     | timestamp     | Tanggal update terakhir otomatis oleh Laravel   |
