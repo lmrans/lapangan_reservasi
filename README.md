@@ -114,7 +114,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 | Melihat Riwayat Pemesanan      | Menampilkan semua reservasi milik sendiri.                               |
 | Membatalkan Reservasi (Opsional) | Dapat membatalkan pesanan jika belum diverifikasi.                     |
 
-
+<h3>Tabel-tabel database beserta field dan tipe datanya</h3>
 
 ### 🧑‍💼 **Tabel Users** (Admin, Petugas, dan User)
 
