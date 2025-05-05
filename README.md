@@ -155,17 +155,19 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ---
 
-### 4. Tabel: pembayaran
+### 📄 Tabel: `pembayaran`
 
-| Nama Field     | Tipe Data     | Keterangan                                      |
-|----------------|---------------|-------------------------------------------------|
-| id             | bigint (PK)   | Primary key                                     |
-| reservasi_id   | foreignId     | Relasi ke tabel `reservasi` (one-to-one)       |
-| total_bayar    | integer       | Jumlah uang yang dibayarkan                     |
-| bukti_transfer | string        | Path atau nama file bukti transfer              |
-| status         | enum          | Status: menunggu, lunas, gagal                  |
-| created_at     | timestamp     | Tanggal dibuat otomatis oleh Laravel            |
-| updated_at     | timestamp     | Tanggal update terakhir otomatis oleh Laravel   |
+| namafield            | tipedata             | keterangan                                                                  |
+|----------------------|----------------------|------------------------------------------------------------------------------|
+| `id`                 | `bigint` (auto)      | Primary key, ID unik pembayaran.                                            |
+| `reservasi_id`       | `unsignedBigInteger` | Foreign key dari tabel `reservasi`, menunjukkan pembayaran untuk reservasi tertentu. |
+| `tanggal_bayar`      | `date`               | Tanggal transaksi pembayaran dilakukan.                                     |
+| `jumlah`             | `decimal(10,2)`      | Total nominal uang yang dibayarkan.                                         |
+| `metode`             | `enum`               | Metode pembayaran: `transfer` atau `cash`.                                  |
+| `status_pembayaran`  | `enum`               | Status pembayaran: `pending`, `dibayar`, atau `gagal`.                      |
+| `created_at`         | `timestamp`          | Waktu data dibuat otomatis oleh Laravel.                                    |
+| `updated_at`         | `timestamp`          | Waktu data terakhir diperbarui otomatis oleh Laravel.                       |
+
 
 ## Relasi Antar Tabel
 
