@@ -115,7 +115,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 | Nama Field   | Tipe Data     | Keterangan                                      |
 |--------------|----------------|-------------------------------------------------|
-| id           | bigint (PK)    | Primary key, auto increment                     |
+| id           | bigint         | Primary key, auto increment                     |
 | name         | string          | Nama lengkap pengguna                           |
 | email        | string          | Email pengguna (unik)                           |
 | password     | string          | Password yang sudah di-hash                     |
