@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_lapangan');
             $table->string('lokasi');
+            $table->string('kode_lapangan')->unique();
             $table->text('deskripsi')->nullable();
             $table->decimal('harga_per_jam', 10, 2);
             $table->timestamps();
