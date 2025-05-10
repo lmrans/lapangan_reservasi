@@ -10,14 +10,14 @@ return new class extends Migration
     {
         Schema::create('pembayaran', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('reservasi_id')->constrained('reservasi')->onDelete('cascade');
-            $table->date('tanggal_bayar');
-            $table->decimal('jumlah', 10, 2);
-            $table->enum('metode', ['transfer', 'cash']);
-            $table->enum('status_pembayaran', ['pending', 'dibayar', 'gagal'])->default('pending');
+            $table->foreignId('reservation_id')->constrained('reservations')->onDelete('cascade');
+            $table->integer('total_bayar');
+            $table->string('bukti_transfer')->nullable();
+            $table->enum('status', ['menunggu', 'lunas', 'gagal'])->default('menunggu');
             $table->timestamps();
         });
     }
+
     public function down()
     {
         Schema::dropIfExists('pembayaran');
