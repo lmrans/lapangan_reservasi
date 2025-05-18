@@ -8,16 +8,16 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('lapangan', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama');
-            $table->string('jenis');
-            $table->text('lokasi')->nullable();
-            $table->string('jam_operasional')->nullable();
-            $table->timestamps();
-        });
-    }
+       Schema::create('lapangan', function (Blueprint $table) {
+    $table->id();
+    $table->string('nama');
+    $table->string('lokasi');
+    $table->text('deskripsi')->nullable();
+    $table->integer('harga_per_jam');
+    $table->timestamps();
+});
 
+    }
     public function down()
     {
         Schema::dropIfExists('lapangan');

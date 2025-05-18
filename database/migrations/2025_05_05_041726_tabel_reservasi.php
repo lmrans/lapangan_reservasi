@@ -8,16 +8,18 @@ return new class extends Migration
 {
     public function up()
 {
-    Schema::create('reservations', function (Blueprint $table) {
-        $table->id();
-        $table->foreignId('user_id')->constrained()->onDelete('cascade');
-        $table->foreignId('lapangan_id')->constrained('lapangan')->onDelete('cascade');
-        $table->date('tanggal');
-        $table->time('jam_mulai');
-        $table->time('jam_selesai');
-        $table->enum('status', ['menunggu', 'diterima', 'selesai', 'ditolak'])->default('menunggu');
-        $table->timestamps();
-    });
+   Schema::create('reservasi', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+ //   $table->foreignId('lapangan_id')->constrained('lapangan')->onDelete('cascade');
+    $table->date('tanggal');
+    $table->time('jam_mulai');
+    $table->time('jam_selesai');
+    $table->enum('status', ['menunggu', 'diterima', 'ditolak', 'selesai'])->default('menunggu');
+    $table->string('kode_verifikasi')->unique();
+    $table->timestamps();
+});
+
 }
 
     public function down()
