@@ -14,7 +14,7 @@ public function up()
     $table->string('name');
     $table->string('email')->unique();
     $table->string('password');
-    $table->enum('role', ['admin', 'petugas', 'user']);
+    $table->enum('role', ['admin', 'petugas', 'user'])->default('user');
     $table->timestamps();
 });
 

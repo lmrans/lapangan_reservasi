@@ -3,18 +3,19 @@
 namespace Database\Seeders;
 
 use App\Models\Pembayaran;
-use App\Models\Reservasi;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
 
 class pembayaranSeeder extends Seeder
 {
       public function run(): void
     {
-        pembayaran::create([
+
+         Pembayaran::create([
+            'user_id' => 1,
             'reservasi_id' => 1,
-            'total_bayar' => 75000,
-            'bukti_transfer' => 'bukti_transfer.jpg',
+            'bukti_pembayaran' => 'bukti1.jpg',
+            'jumlah' => 100000,
             'status' => 'menunggu',
         ]);
     }

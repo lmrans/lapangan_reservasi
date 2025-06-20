@@ -1,10 +1,16 @@
-   @extends('layouts.app')
-   @section('konten')
+   {{-- @extends('layouts.app')
+   @section('content')
    <div class="container-fluid">
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        @if (Auth::user()->role === 'admin')
+                            <h1>Selamat datang admin</h1>
+                        @elseif (Auth::user()->role === 'petugas')
+                            <h1>Selamat datang petugas</h1>
+                        @elseif (Auth::user()->role === 'user')
+                            <h1>Selamat datang Kawan</h1>
+                        @endif
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
@@ -178,4 +184,4 @@
 
 
                 </div>
-   @endsection
+   @endsection --}}

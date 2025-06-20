@@ -11,7 +11,7 @@ return new class extends Migration
    Schema::create('reservasi', function (Blueprint $table) {
     $table->id();
     $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
- //   $table->foreignId('lapangan_id')->constrained('lapangan')->onDelete('cascade');
+    $table->foreignId('lapangan_id')->constrained('lapangan')->onDelete('cascade');
     $table->date('tanggal');
     $table->time('jam_mulai');
     $table->time('jam_selesai');
@@ -25,5 +25,5 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('reservasi');
-    }
+    } 
 };

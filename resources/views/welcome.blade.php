@@ -43,7 +43,7 @@
       <a href="index.html" class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.webp" alt=""> -->
-        <h1 class="sitename">Scout</h1>
+        <h1 class="sitename">Olahraga</h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -52,16 +52,13 @@
           <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#team">Team</a></li>
-          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-          </li>
-          <li><a href="{{ url('/dashboard')}}">Dashboard</a></li>
+           <li><a href="#contact">Contact</a></li>
+
               <li><a href="{{ route('login') }}">Login</a></li>
               <li><a href="{{ route('register') }}">Register</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
-
-      <a class="btn-getstarted" href="index.html#about">Get Started</a>
 
     </div>
   </header>
@@ -76,12 +73,12 @@
             <div class="hero-content" data-aos="fade-up" data-aos-delay="100">
               <div class="hero-tag">
                 <i class="bi bi-rocket-takeoff"></i>
-                <span>Innovative Solutions</span>
+                <span>Solusi Orang Gabut</span>
               </div>
-              <h1>Achieving <span class="highlight">Outstanding Results</span> for Your Growth</h1>
+              <h1>Portal  <span class="highlight">Reservasi</span>Lapangan Olaharaga</h1>
               <p class="lead">Our dedicated team provides exceptional service to help you reach your business goals effectively.</p>
               <ul class="hero-features">
-                <li><i class="bi bi-check-circle"></i> Streamlined operational processes</li>
+                <li><i class="bi bi-check-circle"></i> Streamlined operational processes</li>   
                 <li><i class="bi bi-check-circle"></i> Enhanced customer engagement strategies</li>
                 <li><i class="bi bi-check-circle"></i> Data-driven decision support</li>
               </ul>

@@ -1,24 +1,25 @@
 <?php
 
 namespace App\Models;
-
-use Database\Seeders\Reservasi;
-use Database\Seeders\reservasiSeeder;
+use App\Models\Reservasi;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 class Pembayaran extends Model
 {
-    use HasFactory;
-    protected $table = 'pembayaran';
+     protected $table = 'pembayaran';
+
+    // Kolom yang bisa diisi
     protected $fillable = [
         'reservasi_id',
-        'total_bayar',
-        'bukti_transfer',
+        'jumlah',
+        'metode_pembayaran',
         'status',
+        'tanggal_pembayaran'
     ];
 
-    public function reservation()
+    // Relasi: Pembayaran milik satu reservasi
+    public function reservasi()
     {
-        return $this->belongsTo(reservasiSeeder::class, 'reservasi_id');
+        return $this->belongsTo(Reservasi::class, 'reservasi_id');
     }
 }

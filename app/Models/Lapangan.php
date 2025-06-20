@@ -11,11 +11,12 @@ class Lapangan extends Model
         use HasFactory;
 protected $table = 'lapangan';
     protected $fillable = [
-        'nama',
-        'lokasi',
-        'deskripsi',
-        'harga_per_jam',
-    ];
+    'nama_lapangan',
+    'lokasi',
+    'kode_lapangan',
+    'deskripsi',
+    'harga_per_jam',
+];
 
     public function reservations()
     {
@@ -26,5 +27,14 @@ protected $table = 'lapangan';
     {
          return $this->belongsToMany(reservasiSeeder::class, 'lapangan_reservasi');
     }
+    public function index()
+{
+    $lapangan = Lapangan::whereHas('pembayaran', function ($query) {
+        $query->where('status', 'tersedia');
+    })->get();
+
+    return view('user.lapangan.index', compact('lapangan'));
+}
+
 
 }
